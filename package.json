@@ -19,7 +19,7 @@
     "nodejs"
   ],
   "author": "Jay Rizuri <jayrizuri@gmail.com>",
-  "license": "",
+  "license": "GPL-3.0 License",
   "bugs": {
     "url": "https://github.com/jayrizuri/discord.ep/issues"
   },
