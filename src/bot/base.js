@@ -3,12 +3,7 @@ const EventEmitter = require('events');
 const RESTManager = require('../rest/RESTManager');
 const { DefaultOptions } = require('../utils/Constants');
 const Util = require('../utils/Util');
-
-/**
- * The base class for all clients.
- * @extends {EventEmitter}
- */
-class BaseClient extends EventEmitter {
+class Base extends EventEmitter {
   constructor(options = {}) {
     super();
     
@@ -78,4 +73,4 @@ class BaseClient extends EventEmitter {
   }
 }
 
-module.exports = BaseClient;
+module.exports = Base;
