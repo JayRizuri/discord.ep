@@ -2,14 +2,14 @@
 
 const Base = require('./base'),
   ActionsManager = require('./actions/ActionsManager'),
-  ClientVoiceManager = require('./voice/BotVoiceManager'),
+  BotVoiceManager = require('./voice/BotVoiceManager'),
   WebSocketManager = require('./websocket/WebSocketManager'),
   { Error, TypeError, RangeError } = require('../errors'),
   BaseGuildEmojiManager = require('../managers/BaseGuildEmojiManager'),
   ChannelManager = require('../managers/ChannelManager'),
   GuildManager = require('../managers/GuildManager'),
   UserManager = require('../managers/UserManager'),
-  ShardClientUtil = require('../sharding/ShardBotUtil'),
+  ShardBotUtil = require('../sharding/ShardBotUtil'),
   ClientApplication = require('../structures/botApplication'),
   GuildPreview = require('../structures/GuildPreview'),
   GuildTemplate = require('../structures/GuildTemplate'),
@@ -17,7 +17,7 @@ const Base = require('./base'),
   VoiceRegion = require('../structures/VoiceRegion'),
   Webhook = require('../structures/Webhook'),
   Collection = require('../utils/Collection'), // imma just yoink collections from discord.js because they are super usefull
-  { Events, browser, DefaultOptions } = require('../util/Constant'),
+  { Events, browser, DefaultOptions } = require('../util/constant'),
   DataResolver = require('../utils/DataResolver'),
   Intents = require('../utils/Intents'),
   Permissions = require('../utils/Perms'),
@@ -59,7 +59,7 @@ class Client extends Base {
     this._validateOptions();
     this.ws = new WebSocketManager(this);
     this.actions = new ActionsManager(this);
-    this.voice = !browser ? new ClientVoiceManager(this) : null;
+    this.voice = !browser ? new BotVoiceManager(this) : null;
     this.shard =
       !browser && process.env.SHARDING_MANAGER
         ? ShardClientUtil.singleton(this, process.env.SHARDING_MANAGER_MODE)
@@ -68,8 +68,8 @@ class Client extends Base {
     this.guilds = new GuildManager(this);
     this.channels = new ChannelManager(this);
 
-    const ClientPresence = Structures.get('ClientPresence');
-    this.presence = new ClientPresence(this, options.presence);
+    const BotPresence = Structures.get('BotPresence');
+    this.presence = new BotPresence(this, options.presence);
 
     Object.defineProperty(this, 'token', { writable: true });
     if (!browser && !this.token && 'DISCORD_TOKEN' in process.env) {
