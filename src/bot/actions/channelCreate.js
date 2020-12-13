@@ -1,7 +1,7 @@
 'use strict';
 
 const Action = require('./Action');
-const { Events } = require('../../util/constant');
+const { Events } = require('../../utils/constant');
 
 class ChannelCreateAction extends Action {
   handle(data) {
