@@ -16,12 +16,12 @@ const Base = require('./base'),
   Invite = require('../structures/Invite'),
   VoiceRegion = require('../structures/VoiceRegion'),
   Webhook = require('../structures/Webhook'),
-  Collection = require('../util/Collection'), // imma just yoink collections from discord.js because they are super usefull
+  Collection = require('../utils/Collection'), // imma just yoink collections from discord.js because they are super usefull
   { Events, browser, DefaultOptions } = require('../util/Constant'),
-  DataResolver = require('../util/DataResolver'),
-  Intents = require('../util/Intents'),
-  Permissions = require('../util/Perms'),
-  Structures = require('../util/Structures');
+  DataResolver = require('../utils/DataResolver'),
+  Intents = require('../utils/Intents'),
+  Permissions = require('../utils/Perms'),
+  Structures = require('../utils/Structures');
 
 class Client extends Base {
   constructor(options = {}) {
