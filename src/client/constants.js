@@ -1,6 +1,10 @@
 
 
-
+function getImageUrl(root, { format = 'webp', size } = {}) {
+  if (format && !AllowedImageFormats.includes(format)) throw new Error('IMAGE_FORMAT', format);
+  if (size && !AllowedImageSizes.includes(size)) throw new RangeError('IMAGE_SIZE', size);
+  return `${root}.${format}${size ? `?size=${size}` : ''}`;
+}
 exports.DefaultClientOptions = {
 	shardCount: 1,
 	retryLimit: 1,
@@ -34,31 +38,31 @@ exports.endpoints = {
 			DefaultAvatar: discriminator => `${root}/embed/avatars/${discriminator}.png`,
 			Avatar: ( userID, hash, format = 'webp', size, dynamic = false ) => {
 				if (dynamic) format = hash.startsWith('a_') ? 'gif' : format;
-				return makeImageUrl(`${root}/avatars/${userID}/${hash}`, { format, size });
+				return getImageUrl(`${root}/avatars/${userID}/${hash}`, { format, size });
 			},
   
 			Banner: (guildID, hash, format = 'webp', size) =>
-				makeImageUrl(`${root}/banners/${guildID}/${hash}`, { format, size }),
+				getImageUrl(`${root}/banners/${guildID}/${hash}`, { format, size }),
 			Icon: (guildID, hash, format = 'webp', size, dynamic = false) => {
 				if (dynamic) format = hash.startsWith('a_') ? 'gif' : format;
-				return makeImageUrl(`${root}/icons/${guildID}/${hash}`, { format, size });
+				return getImageUrl(`${root}/icons/${guildID}/${hash}`, { format, size });
 			},
         
 			AppIcon: (clientID, hash, { format = 'webp', size } = {}) =>
-				makeImageUrl(`${root}/app-icons/${clientID}/${hash}`, { size, format }),
+				getImageUrl(`${root}/app-icons/${clientID}/${hash}`, { size, format }),
 			AppAsset: (clientID, hash, { format = 'webp', size } = {}) =>
-				makeImageUrl(`${root}/app-assets/${clientID}/${hash}`, { size, format }),
+				getImageUrl(`${root}/app-assets/${clientID}/${hash}`, { size, format }),
         
 			GDMIcon: (channelID, hash, format = 'webp', size) =>
-				makeImageUrl(`${root}/channel-icons/${channelID}/${hash}`, { size, format }),
+				getImageUrl(`${root}/channel-icons/${channelID}/${hash}`, { size, format }),
         
 			Splash: (guildID, hash, format = 'webp', size) =>
-				makeImageUrl(`${root}/splashes/${guildID}/${hash}`, { size, format }),
+				getImageUrl(`${root}/splashes/${guildID}/${hash}`, { size, format }),
 			DiscoverySplash: (guildID, hash, format = 'webp', size) =>
-				makeImageUrl(`${root}/discovery-splashes/${guildID}/${hash}`, { size, format }),
+				getImageUrl(`${root}/discovery-splashes/${guildID}/${hash}`, { size, format }),
         
 			TeamIcon: (teamID, hash, { format = 'webp', size } = {}) =>
-				makeImageUrl(`${root}/team-icons/${teamID}/${hash}`, { size, format }),
+				getImageUrl(`${root}/team-icons/${teamID}/${hash}`, { size, format }),
 		};
 	},
 	invite: (root, code) => `${root}/${code}`,
