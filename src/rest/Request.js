@@ -12,7 +12,8 @@ class Request {
 		
 		let queryString = '';
 		
-		if (options.query) queryString = new URLSearchParams(Object.entries(options.query)
+		if (options.query)
+			queryString = new URLSearchParams(Object.entries(options.query)
 				.filter(([, value]) => ![null, 'null', 'undefined'].includes(value) && typeof value !== 'undefined')
 				.flatMap(([key, value]) => (Array.isArray(value) ? value.map(v => [key, v]) : [[key, value]]));
 			).toString();
@@ -26,9 +27,9 @@ class Request {
 		
 		if (this.options.auth)
 			headers.Authorization = this.rest.getAuth();
-    	if (this.options.reason)
+		if (this.options.reason)
 			headers['X-Audit-Log-Reason'] = encodeURIComponent(this.options.reason);
-    	if (this.options.headers)
+		if (this.options.headers)
 			headers = Object.assign(headers, this.options.headers);
 		if (this.options.files && this.options.files.length) {
 			body = new FormData();
