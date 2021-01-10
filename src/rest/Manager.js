@@ -1,6 +1,6 @@
 const { endpoints } = require('../client/constants'),
-      Request = require('Request'),
-      RequestHandler = require('RequestHandler'),
+      Request = require('./Request'),
+      RequestHandler = require('./RequestHandler'),
       Collection = require('@discordjs/collection'),
       router = require('./Router');
 class Manager {
