@@ -1,5 +1,6 @@
 const AsyncQueue = require("AsyncQueue"),
-      HTTPError = require('./HTTPError');
+      HTTPError = require('./HTTPError'),
+      DiscordError = require('./DiscordError');
 class RequestHandler {
 	constructor(manager) {
 		this.manager = manager;
