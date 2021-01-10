@@ -1,6 +1,6 @@
-const AsyncQueue = require("AsyncQueue"),
-      HTTPError = require("HTTPError"),
-      DiscordError = require("DiscordError"),
+const AsyncQueue = require("./AsyncQueue"),
+      HTTPError = require("./HTTPError"),
+      DiscordError = require("./DiscordError"),
       Utils = require('../client/Utils');
 
 function parseResponse(res) {
