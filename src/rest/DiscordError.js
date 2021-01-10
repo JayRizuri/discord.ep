@@ -1,4 +1,4 @@
-class DiscordAPIError extends Error {
+class DiscordError extends Error {
 	constructor(path, error, method, status) {
 		super();
 		const flattened = this.constructor.flattenErrors(error.errors || error).join('\n');
@@ -29,4 +29,4 @@ class DiscordAPIError extends Error {
 	}
 }
 
-module.exports = DiscordAPIError;
+module.exports = DiscordError;
