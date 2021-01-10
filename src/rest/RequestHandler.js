@@ -1,7 +1,7 @@
 const AsyncQueue = require("AsyncQueue"),
       HTTPError = require("HTTPError"),
       DiscordError = require("DiscordError"),
-      Util = require('../client/Utils');
+      Utils = require('../client/Utils');
 
 function parseResponse(res) {
 	if (res.headers.get('content-type').startsWith('application/json'))
@@ -55,7 +55,7 @@ class RequestHandler {
 				});
 			if (this.manager.globalTimeout)
 				await this.manager.globalTimeout;
-			else await Util.delayFor(timeout);
+			else await Utils.wait(timeout);
 		}
 		let res;
 		try {
@@ -80,7 +80,7 @@ class RequestHandler {
 			if (request.route.includes('reactions'))
 				this.reset = new Date(serverDate).getTime() - getAPIOffset(serverDate) + 250;
 			if (res.headers.get('x-ratelimit-global')) {
-				this.manager.globalTimeout = Util.delayFor(this.retryAfter);
+				this.manager.globalTimeout = Utils.wait(this.retryAfter);
 				await this.manager.globalTimeout;
 				this.manager.globalTimeout = null;
 			}
@@ -90,7 +90,7 @@ class RequestHandler {
 		if (res.status >= 400 && res.status < 500) {
 			if (res.status === 429) {
 				this.manager.client.emit('debug', `429 hit on route ${request.route}`);
-				await Util.delayFor(this.retryAfter);
+				await Utils.wait(this.retryAfter);
 				return this.execute(request);
 			}
 			let data;
