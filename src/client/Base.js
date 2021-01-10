@@ -1,7 +1,8 @@
 require("setimmediate");
 const eventEmitter = require("events"),
       { DefaultClientOptions } = require("./constants"),
-      Manager = require("../rest/Manager")
+      Utils = require("./Utils"),
+      Manager = require("../rest/Manager");
 
 class Base extends eventEmitter {
 	constructor(options) {
@@ -12,7 +13,7 @@ class Base extends eventEmitter {
 		this._timeouts = new Set();
 		this._intervals = new Set();
 		this._immediates = new Set();
-		this.options = Util.mergeDefault(DefaultClientOptions, options);
+		this.options = Utils.mergeDefault(DefaultClientOptions, options);
 		this.rest = new Manager(this);
 	}
 }
