@@ -5,7 +5,7 @@ class Utils {
 	constructor() {
 		throw new Error(`The ${this.constructor.name} class may not be instantiated.`);
 	}
-	static delayFor(ms) {
+	static wait(ms) {
     	return new Promise(resolve => {
 			setTimeout(resolve, ms);
 		});
