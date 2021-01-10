@@ -1,5 +1,5 @@
 const EventEmitter = require('events'),
-	WebSocketShard = require('./WebSocketShard'),
+	WebSocketShard = require('./Shard'),
 	PacketHandlers = require('./handlers'),
 	Collection = require('@discord.js/collections'),
 	{ Events, ShardEvents, Status, WSCodes, WSEvents } = require('../client/Constants'),
