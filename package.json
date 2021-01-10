@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/jayrizuri/discord.ep#readme",
   "dependencies": {
+    "@discordjs/collection": "^0.1.6",
     "abort-controller": "^3.0.0",
     "node-fetch": "^2.6.1",
     "prism-media": "^1.2.2",
