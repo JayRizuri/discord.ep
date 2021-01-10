@@ -1,3 +1,4 @@
+const AsyncQueue = require("AsyncQueue");
 class RequestHandler {
 	constructor(manager) {
 		this.manager = manager;
