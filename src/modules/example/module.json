@@ -1,6 +1,6 @@
 {
-	"name": "User",
-	"description": "Module for handling user data.",
+	"name": "Example",
+	"description": "An example Module",
 	"main": "index.js",
 	"version": "0.0.1",
 	"author": "Jay Rizuri"

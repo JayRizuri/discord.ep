@@ -1,12 +1,16 @@
-const Base = require("./Base")
+const Base = require("./Base");
 class Client extends Base {
 	constructor(options) {
-		if (typeof options == "undefined")
-			options = {};
+		if (typeof options === "undefined") options = {};
 		super(options);
 		let ProcessData = process.env;
 		try {
-			data = require('worker_threads').workerData || data;
-		} catch {};
-	};
+			let data =
+				require("worker_threads").workerData ||
+				ProcessData;
+		} catch (e) {
+			console.error(e);
+		}
+	}
 }
+module.exports = Client;
