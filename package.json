@@ -7,9 +7,9 @@
   "exports": {
     ".": [
       {
-        "require": "./src/index.js"
+        "require": "./src/main.js"
       },
-      "./src/index.js"
+      "./src/main.js"
     ]
   },
   "keywords": [
